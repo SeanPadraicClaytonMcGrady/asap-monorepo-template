@@ -1,11 +1,10 @@
 import process from "node:process";
 import { authEnv } from "@asap/auth/env";
 import { createEnv } from "@t3-oss/env-nextjs";
-import { vercel } from "@t3-oss/env-nextjs/presets-zod";
 import { z } from "zod/v4";
 
 export const env = createEnv({
-	extends: [authEnv(), vercel()],
+	extends: [authEnv()],
 	shared: {
 		NODE_ENV: z
 			.enum(["development", "production", "test"])
@@ -16,7 +15,7 @@ export const env = createEnv({
 	 * This way you can ensure the app isn't built with invalid env vars.
 	 */
 	server: {
-		POSTGRES_URL: z.url(),
+		DATABASE_URL: z.url(),
 	},
 
 	/**
