@@ -20,7 +20,7 @@ import {
 	useSuspenseQuery,
 } from "@tanstack/react-query";
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/trpc/react.tsx";
 
 export function CreatePostForm() {
 	const trpc = useTRPC();

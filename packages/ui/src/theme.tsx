@@ -4,13 +4,13 @@ import { DesktopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import * as React from "react";
 import * as z from "zod/v4";
 
-import { Button } from "./button";
+import { Button } from "./button.tsx";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
-} from "./dropdown-menu";
+} from "./dropdown-menu.tsx";
 
 const ThemeModeSchema = z.enum(["light", "dark", "auto"]);
 

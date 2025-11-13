@@ -2,7 +2,7 @@ import { Button } from "@asap/ui/button";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { auth, getSession } from "~/auth/server";
+import { auth, getSession } from "~/auth/server.ts";
 
 export async function AuthShowcase() {
 	const session = await getSession();

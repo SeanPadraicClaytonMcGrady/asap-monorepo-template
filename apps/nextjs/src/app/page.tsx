@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 
-import { HydrateClient, prefetch, trpc } from "~/trpc/server";
-import { AuthShowcase } from "./_components/auth-showcase";
+import { HydrateClient, prefetch, trpc } from "~/trpc/server.tsx";
+import { AuthShowcase } from "./_components/auth-showcase.tsx";
 import {
 	CreatePostForm,
 	PostCardSkeleton,
 	PostList,
-} from "./_components/posts";
+} from "./_components/posts.tsx";
 
 export default function HomePage() {
 	prefetch(trpc.post.all.queryOptions());

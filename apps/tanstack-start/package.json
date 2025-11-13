@@ -7,8 +7,6 @@
 		"dev": "pnpm with-env vite dev",
 		"build": "vite build",
 		"start": "vite start",
-		"format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
-		"lint": "eslint --flag unstable_native_nodejs_ts_config",
 		"typecheck": "tsc --noEmit",
 		"with-env": "dotenv -e ../../.env --"
 	},
@@ -49,6 +47,5 @@
 		"typescript": "catalog:",
 		"vite": "catalog:",
 		"vite-tsconfig-paths": "^5.1.4"
-	},
-	"prettier": "@asap/prettier-config"
+	}
 }

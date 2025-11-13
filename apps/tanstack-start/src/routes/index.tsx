@@ -20,8 +20,8 @@ import {
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 
-import { AuthShowcase } from "~/component/auth-showcase";
-import { useTRPC } from "~/lib/trpc";
+import { AuthShowcase } from "~/component/auth-showcase.tsx";
+import { useTRPC } from "~/lib/trpc.ts";
 
 export const Route = createFileRoute("/")({
 	loader: ({ context }) => {

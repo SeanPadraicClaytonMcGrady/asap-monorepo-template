@@ -17,7 +17,7 @@
 		"dev:next": "turbo watch dev -F @asap/nextjs...",
 		"format-and-lint": "biome check .",
 		"format-and-lint:fix": "biome check . --write",
-		"postinstall": "turbo run format-and-lint",
+		"postinstall": "turbo run format-and-lint:fix",
 		"typecheck": "turbo run typecheck",
 		"ui-add": "turbo run ui-add",
 		"android": "expo run:android",

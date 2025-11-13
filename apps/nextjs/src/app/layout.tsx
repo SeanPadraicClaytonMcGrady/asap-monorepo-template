@@ -4,8 +4,8 @@ import { Toaster } from "@asap/ui/toast";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { env } from "~/env";
-import { TRPCReactProvider } from "~/trpc/react";
+import { env } from "~/env.ts";
+import { TRPCReactProvider } from "~/trpc/react.tsx";
 
 import "~/app/styles.css";
 

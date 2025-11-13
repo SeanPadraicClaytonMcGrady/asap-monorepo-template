@@ -37,6 +37,5 @@
 		"drizzle-kit": "^0.31.5",
 
 		"typescript": "catalog:"
-	},
-	"prettier": "@asap/prettier-config"
+	}
 }

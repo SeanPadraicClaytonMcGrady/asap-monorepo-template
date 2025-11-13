@@ -1,7 +1,7 @@
 import { Button } from "@asap/ui/button";
 import { useNavigate } from "@tanstack/react-router";
 
-import { authClient } from "~/auth/client";
+import { authClient } from "~/auth/client.ts";
 
 export function AuthShowcase() {
 	const { data: session } = authClient.useSession();
