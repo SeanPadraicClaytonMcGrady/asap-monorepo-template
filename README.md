@@ -1,28 +1,8 @@
-# create-t3-turbo
-
-> [!NOTE]
->
-> create-t3-turbo now includes the option to use Tanstack Start for the web app!
-
-## Installation
-
-> [!NOTE]
->
-> Make sure to follow the system requirements specified in [`package.json#engines`](./package.json#L4) before proceeding.
-
-There are two ways of initializing an app using the `create-t3-turbo` starter. You can either use this repository as a template:
-
-![use-as-template](https://github.com/t3-oss/create-t3-turbo/assets/51714798/bb6c2e5d-d8b6-416e-aeb3-b3e50e2ca994)
-
-or use Turbo's CLI to init your project (use PNPM as package manager):
-
-```bash
-npx create-turbo@latest -e https://github.com/t3-oss/create-t3-turbo
-```
+# ASAP Monorepo
 
 ## About
 
-Ever wondered how to migrate your T3 application into a monorepo? Stop right here! This is the perfect starter repo to get you running with the perfect stack!
+This is a WIP template for the ASAP team. The idea is to house all, or most, pieces of an application in one repo for ultimate developer experience & versatility.
 
 It uses [Turborepo](https://turborepo.com) and contains:
 
@@ -219,66 +199,111 @@ Deploying your Expo application works slightly differently compared to Next.js o
 
    <https://github.com/t3-oss/create-t3-turbo/blob/656965aff7db271e5e080242c4a3ce4dad5d25f8/apps/expo/src/utils/api.tsx#L20-L37>
 
-2. Let's start by setting up [EAS Build](https://docs.expo.dev/build/introduction), which is short for Expo Application Services. The build service helps you create builds of your app, without requiring a full native development setup. The commands below are a summary of [Creating your first build](https://docs.expo.dev/build/setup).
+(WIP)
+2. Go through the process of adding an app to Google Play
 
-   ```bash
-   # Install the EAS CLI
-   pnpm add -g eas-cli
-
-   # Log in with your Expo account
-   eas login
-
-   # Configure your Expo app
-   cd apps/expo
-   eas build:configure
-   ```
-
-3. After the initial setup, you can create your first build. You can build for Android and iOS platforms and use different [`eas.json` build profiles](https://docs.expo.dev/build-reference/eas-json) to create production builds or development, or test builds. Let's make a production build for iOS.
-
-   ```bash
-   eas build --platform ios --profile production
-   ```
-
-   > If you don't specify the `--profile` flag, EAS uses the `production` profile by default.
-
-4. Now that you have your first production build, you can submit this to the stores. [EAS Submit](https://docs.expo.dev/submit/introduction) can help you send the build to the stores.
-
-   ```bash
-   eas submit --platform ios --latest
-   ```
-
-   > You can also combine build and submit in a single command, using `eas build ... --auto-submit`.
-
-5. Before you can get your app in the hands of your users, you'll have to provide additional information to the app stores. This includes screenshots, app information, privacy policies, etc. _While still in preview_, [EAS Metadata](https://docs.expo.dev/eas/metadata) can help you with most of this information.
-
-6. Once everything is approved, your users can finally enjoy your app. Let's say you spotted a small typo; you'll have to create a new build, submit it to the stores, and wait for approval before you can resolve this issue. In these cases, you can use EAS Update to quickly send a small bugfix to your users without going through this long process. Let's start by setting up EAS Update.
-
-   The steps below summarize the [Getting started with EAS Update](https://docs.expo.dev/eas-update/getting-started/#configure-your-project) guide.
-
-   ```bash
-   # Add the `expo-updates` library to your Expo app
-   cd apps/expo
-   pnpm expo install expo-updates
-
-   # Configure EAS Update
-   eas update:configure
-   ```
-
-7. Before we can send out updates to your app, you have to create a new build and submit it to the app stores. For every change that includes native APIs, you have to rebuild the app and submit the update to the app stores. See steps 2 and 3.
-
-8. Now that everything is ready for updates, let's create a new update for `production` builds. With the `--auto` flag, EAS Update uses your current git branch name and commit message for this update. See [How EAS Update works](https://docs.expo.dev/eas-update/how-eas-update-works/#publishing-an-update) for more information.
-
-   ```bash
-   cd apps/expo
-   eas update --auto
-   ```
-
-   > Your OTA (Over The Air) updates must always follow the app store's rules. You can't change your app's primary functionality without getting app store approval. But this is a fast way to update your app for minor changes and bug fixes.
-
-9. Done! Now that you have created your production build, submitted it to the stores, and installed EAS Update, you are ready for anything!
+3. Go through the process of adding an app to Apple Store
+(WIP)
 
 ## References
 
 The stack originates from [create-t3-app](https://github.com/t3-oss/create-t3-app).
 
-A [blog post](https://jumr.dev/blog/t3-turbo) where I wrote how to migrate a T3 app into this.
+A [blog post](https://jumr.dev/blog/t3-turbo) where the original creator of the repo discusses how he combined t3 into turbo repo.
+
+## How can I start everything?
+
+For development, we need a local database first.
+
+1. Run "docker compose up -d" in your terminal to turn on a database, viewable in Docker Desktop.
+(use "docker compose down -v" to turn it off)
+2. pnpm install
+3. pnpm dev
+
+This will run the dev environment.
+
+pnpm is non-negotiable. It allows us to use workspaces, which is a way of organizing packages per declared workspace, and operates quickly with monorepos.
+
+## Git Workflow
+
+We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for our workflow.
+
+## Branch Naming
+
+- `feat/addTelemetry`
+- `chore/updateVersion`
+- `fix/addBracket`
+
+---
+
+## Merge Request Description Standard
+
+```
+title: type(optional scope): description
+
+body:
+<extended description of the changes>
+<bullet points and/or checklist of key points of interest>
+
+footer
+```
+
+**title** should be a conventional commit tag. It may have a scope. It should have a description. Note: This is the name of your branch.
+
+**body** should contain an extended summary, and a bullet list of items of interest. It always starts with the header "Description", and gives a small summary of the goal & code. The bullets should cover relevant details. Note: if the branch touches on security, mention it.
+
+**footer** It should include a checklist for anything necessary outside of the code, such as documentation, env vars, etc. This should be actionable. It may or may not be here depending on the requirements for the branch.
+
+<details>
+<summary><strong>Example Merge Request Description</strong></summary>
+
+### feat(auth): add user verification
+
+#### Description
+
+This merge request adds user verification via credentials and fingerprints to the application. It utilizes pre-existing routes for credentials, and a new 3rd party route for the fingerprints. The 3rd party stores & compares fingerprints, so our data print is minimal to manage here.
+
+- Added a new HoC for auth, including both credentials & the 3rd party fingerprinter.
+- Updated user-related schemas.
+- Added 2 new fetches.
+  - One fetch goes to our old backend.
+  - The other fetch goes to the 3rd party service. More below.
+- Integrated 3rd party service for fingerprint scanning.
+    - After initialization in the new HoC, we use a special hook to make a fetch with fingerprint data optimized by the 3rd party library.
+    - SECURITY: The library handles the hashing.
+
+#### Pre-merge checklist
+
+- [ ] Fingerprint 3rd party url env var
+- [ ] Fingerprint 3rd party key env var
+- [ ] Fingerprint 3rd party documentation link here
+
+</details>
+
+---
+
+## Flow
+
+`yourBranch` + review → `development` + testing → `main`
+
+### Before Starting Work
+
+```bash
+git checkout development
+git pull origin development
+git checkout -b feature/your-feature-name
+```
+
+### While Working & Before Pushes to Dev
+
+```bash
+# Regularly sync with development
+git checkout development
+git pull origin development
+git checkout feature/your-feature-name
+git merge development
+```
+
+---
+
+Feel free to reach out to **Sean Padraic Clayton McGrady** (project author) for additional
