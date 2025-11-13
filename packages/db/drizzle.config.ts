@@ -1,3 +1,4 @@
+import process from "node:process";
 import type { Config } from "drizzle-kit";
 
 if (!process.env.POSTGRES_URL) {

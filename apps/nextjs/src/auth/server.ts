@@ -5,7 +5,7 @@ import { nextCookies } from "better-auth/next-js";
 import { headers } from "next/headers";
 import { cache } from "react";
 
-import { env } from "~/env";
+import { env } from "~/env.ts";
 
 const baseUrl =
 	env.VERCEL_ENV === "production"

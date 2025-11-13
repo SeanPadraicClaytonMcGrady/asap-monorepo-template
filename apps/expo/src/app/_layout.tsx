@@ -3,7 +3,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 
-import { queryClient } from "~/utils/api";
+import { queryClient } from "~/utils/api.tsx";
 
 import "../styles.css";
 

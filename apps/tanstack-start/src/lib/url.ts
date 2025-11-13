@@ -1,4 +1,5 @@
-import { env } from "~/env";
+import process from "node:process";
+import { env } from "~/env.ts";
 
 export function getBaseUrl() {
 	if (typeof window !== "undefined") {

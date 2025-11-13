@@ -91,7 +91,6 @@ export function Field({
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
 	return (
 		<div
-			//biome-ignore lint/a11y/useSemanticElements: Spreading props is intended here
 			role="group"
 			data-slot="field"
 			data-orientation={orientation}

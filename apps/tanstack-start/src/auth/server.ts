@@ -1,8 +1,8 @@
 import { initAuth } from "@asap/auth";
 import { reactStartCookies } from "better-auth/react-start";
 
-import { env } from "~/env";
-import { getBaseUrl } from "~/lib/url";
+import { env } from "~/env.ts";
+import { getBaseUrl } from "~/lib/url.ts";
 
 export const auth = initAuth({
 	baseUrl: getBaseUrl(),

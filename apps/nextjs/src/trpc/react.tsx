@@ -1,5 +1,6 @@
 "use client";
 
+import process from "node:process";
 import type { AppRouter } from "@asap/api";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -11,9 +12,8 @@ import {
 import { createTRPCContext } from "@trpc/tanstack-react-query";
 import { useState } from "react";
 import SuperJSON from "superjson";
-
-import { env } from "~/env";
-import { createQueryClient } from "./query-client";
+import { env } from "~/env.ts";
+import { createQueryClient } from "./query-client.ts";
 
 let clientQueryClientSingleton: QueryClient | undefined;
 const getQueryClient = () => {

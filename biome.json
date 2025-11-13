@@ -24,12 +24,15 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"a11y": "warn",
+			"a11y": {
+				"useSemanticElements": "off"
+			},
 			"suspicious": {
-				"noReactSpecificProps": "off"
+				"noReactSpecificProps": "off",
+				"noDuplicateCustomProperties": "off"
 			},
 			"correctness": {
-				"useImportExtensions": "off"
+				"noNodejsModules": "off"
 			}
 		}
 	},

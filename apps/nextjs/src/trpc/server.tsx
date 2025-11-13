@@ -6,8 +6,8 @@ import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { headers } from "next/headers";
 import { cache } from "react";
 
-import { auth } from "~/auth/server";
-import { createQueryClient } from "./query-client";
+import { auth } from "~/auth/server.ts";
+import { createQueryClient } from "./query-client.ts";
 
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when

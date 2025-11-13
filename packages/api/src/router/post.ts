@@ -3,7 +3,7 @@ import { CreatePostSchema, Post } from "@asap/db/schema";
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod/v4";
 
-import { protectedProcedure, publicProcedure } from "../trpc";
+import { protectedProcedure, publicProcedure } from "../trpc.ts";
 
 export const postRouter = {
 	all: publicProcedure.query(({ ctx }) => {

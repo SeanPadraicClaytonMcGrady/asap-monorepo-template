@@ -10,7 +10,7 @@
  * For actual authentication usage, import from "../src/index.ts" instead.
  */
 
-import { initAuth } from "../src/index";
+import { initAuth } from "../src/index.ts";
 
 /**
  * CLI-only authentication configuration for schema generation.
