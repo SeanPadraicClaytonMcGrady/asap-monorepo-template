@@ -25,9 +25,6 @@
 		"clean": {
 			"cache": false
 		},
-		"//#clean": {
-			"cache": false
-		},
 		"push": {
 			"cache": false,
 			"interactive": true
@@ -37,6 +34,10 @@
 			"persistent": true
 		},
 		"ui-add": {
+			"cache": false,
+			"interactive": true
+		},
+		"usecase:add": {
 			"cache": false,
 			"interactive": true
 		}

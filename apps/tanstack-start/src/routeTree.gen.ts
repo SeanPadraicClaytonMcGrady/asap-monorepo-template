@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // @ts-nocheck
 
 // noinspection JSUnusedGlobalSymbols
@@ -6,28 +8,25 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root.tsx";
-import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth.$.ts";
-import { Route as ApiTrpcSplatRouteImport } from "./routes/api/trpc.$.ts";
-import { Route as IndexRouteImport } from "./routes/index.tsx";
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth.$";
+import { Route as ApiTrpcSplatRouteImport } from "./routes/api/trpc.$";
+import { Route as IndexRouteImport } from "./routes/index";
 
 const IndexRoute = IndexRouteImport.update({
 	id: "/",
 	path: "/",
 	getParentRoute: () => rootRouteImport,
-	//biome-ignore lint/suspicious/noExplicitAny: Any is needed here for TRPC types --- IGNORE ---
 } as any);
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
 	id: "/api/trpc/$",
 	path: "/api/trpc/$",
 	getParentRoute: () => rootRouteImport,
-	//biome-ignore lint/suspicious/noExplicitAny: Any is needed here for TRPC types --- IGNORE ---
 } as any);
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 	id: "/api/auth/$",
 	path: "/api/auth/$",
 	getParentRoute: () => rootRouteImport,
-	//biome-ignore lint/suspicious/noExplicitAny: Any is needed here for TRPC types --- IGNORE ---
 } as any);
 
 export interface FileRoutesByFullPath {
@@ -95,7 +94,7 @@ export const routeTree = rootRouteImport
 	._addFileChildren(rootRouteChildren)
 	._addFileTypes<FileRouteTypes>();
 
-// import type { createStart } from "@tanstack/react-start";
+import type { createStart } from "@tanstack/react-start";
 import type { getRouter } from "./router.tsx";
 
 declare module "@tanstack/react-start" {

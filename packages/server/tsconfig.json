@@ -1,5 +1,5 @@
 {
 	"extends": "@asap/tsconfig/compiled-package.json",
-	"include": ["src", "*.ts"],
+	"include": ["src"],
 	"exclude": ["node_modules"]
 }

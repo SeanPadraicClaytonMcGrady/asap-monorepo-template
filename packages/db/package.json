@@ -27,15 +27,16 @@
 		"with-env": "dotenv -e ../../.env --"
 	},
 	"dependencies": {
-		"@vercel/postgres": "^0.10.0",
+		"@types/pg": "catalog:",
 		"drizzle-orm": "^0.44.7",
 		"drizzle-zod": "^0.8.3",
+		"pg": "catalog:",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@asap/tsconfig": "workspace:*",
-		"drizzle-kit": "^0.31.5",
-
+		"@testcontainers/postgresql": "catalog:",
+		"drizzle-kit": "catalog:",
 		"typescript": "catalog:"
 	}
 }

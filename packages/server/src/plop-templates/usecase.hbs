@@ -1,0 +1,20 @@
+import { mockDbType } from "@asap/db";
+import type z from "zod";
+import { {{pascalCase name}}InputSchema, {{pascalCase name }}OutputSchema } from "./{{kebabCase name}}.schema";
+
+export class {{pascalCase name}}UseCase {
+	constructor(
+		private input: z.infer<typeof {{pascalCase name}}InputSchema>,
+		private dbClient: mockDbType,
+	) {}
+
+	validate() {
+		return {{pascalCase name}}InputSchema.parse(this.input);
+	}
+
+	execute() {
+		const validData = this.validate();
+		// TODO: Implement the {{pascalCase name}} use case logic
+		return validData;
+	}
+}

@@ -13,6 +13,7 @@
 		"auth:generate": "pnpm -F @asap/auth generate",
 		"db:push": "turbo -F @asap/db push",
 		"db:studio": "turbo -F @asap/db studio",
+		"usecase:add": "turbo -F @asap/server usecase:add",
 		"dev": "turbo watch dev --continue",
 		"dev:next": "turbo watch dev -F @asap/nextjs...",
 		"format-and-lint": "biome check .",
