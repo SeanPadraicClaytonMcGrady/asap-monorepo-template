@@ -30,13 +30,13 @@
 		"with-env": "dotenv -e ../../.env --"
 	},
 	"dependencies": {
-		"@types/pg": "catalog:",
 		"drizzle-orm": "^0.44.7",
 		"drizzle-zod": "^0.8.3",
-		"pg": "catalog:",
+		"pg": "8.16.3",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
+		"@types/pg": "catalog:",
 		"@asap/tsconfig": "workspace:*",
 		"@testcontainers/postgresql": "catalog:",
 		"drizzle-kit": "catalog:",
