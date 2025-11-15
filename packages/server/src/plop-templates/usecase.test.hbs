@@ -1,23 +1,36 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { {{pascalCase name}}UseCase } from "./{{kebabCase name}}.use-case";
-import { mockDb } from "@asap/db";
+import { eq, mockDb } from "@asap/db/mockDb";
 
 describe("{{pascalCase name}}UseCase", () => {
-	const db = mockDb;
+	let db: ReturnType<typeof mockDb.getDb>;
+	let schema: ReturnType<typeof mockDb.getSchema>;
 
-	beforeEach(() => {
-		db.on();
-	});
+	beforeEach(async () => {
+		await mockDb.on();
+		db = mockDb.getDb();
+		schema = mockDb.getSchema();
+	}, 60000);
 
-	afterEach(() => {
-		db.off();
-	});
+	afterEach(async () => {
+		await mockDb.off();
+	}, 60000);
 
 	it("should validate input correctly", () => {
 		// TODO: Add validation tests
+
+		const validInput = {}
+		
 		const useCase = new {{pascalCase name}}UseCase(
-			{}, // Provide valid input for your tests
-			db
+			validInput,
+			db,
+			schema
+		);
+
+		const useCase = new {{pascalCase name}}UseCase(
+			validInput,
+			db,
+			schema
 		);
 
 		expect(() => useCase.validate()).to.not.throw();
@@ -25,9 +38,13 @@ describe("{{pascalCase name}}UseCase", () => {
 
 	it("should execute use case successfully", () => {
 		// TODO: Add execution tests
+
+		const validInput = {}
+		
 		const useCase = new {{pascalCase name}}UseCase(
-			{}, // Provide valid input for your tests
-			db
+			validInput,
+			db,
+			schema
 		);
 
 		const result = useCase.execute();

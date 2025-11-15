@@ -1,10 +1,14 @@
-import { mockDb, type mockDbType } from "@asap/db/mockDb";
+import { eq, mockDb } from "@asap/db/mockDb";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { AddUserUseCase } from "./add-user.use-case";
 
-describe("AddUserUseCase", async () => {
+describe("AddUserUseCase", () => {
+	let db: ReturnType<typeof mockDb.getDb>;
+	let schema: ReturnType<typeof mockDb.getSchema>;
 	beforeEach(async () => {
 		await mockDb.on();
+		db = mockDb.getDb();
+		schema = mockDb.getSchema();
 	}, 60000);
 
 	afterEach(async () => {
@@ -22,13 +26,10 @@ describe("AddUserUseCase", async () => {
 			updatedAt: new Date(),
 		};
 
-		const useCase = new AddUserUseCase(
-			validInput,
-			await mockDb.getDb(),
-			await mockDb.getSchema(),
-		);
+		const useCase = new AddUserUseCase(validInput, db, schema);
 
-		expect(() => useCase.validate()).to.not.throw();
+		const validatedData = useCase.validate();
+		expect(validatedData).toEqual(validInput);
 	});
 
 	it("should execute use case successfully", async () => {
@@ -42,15 +43,15 @@ describe("AddUserUseCase", async () => {
 			updatedAt: new Date(),
 		};
 
-		const useCase = new AddUserUseCase(
-			validInput,
-			await mockDb.getDb(),
-			await mockDb.getSchema(),
-		);
+		const useCase = new AddUserUseCase(validInput, db, schema);
 
-		const result = await useCase.execute();
+		await useCase.execute();
+		const newData = await db
+			.select()
+			.from(schema.user)
+			.where(eq(schema.user.id, "123"));
 		// TODO: Add assertions based on expected output
 		// console.log(result)
-		expect(result).toBeDefined();
+		expect(newData[0]!.id).toEqual("123");
 	});
 }, 60000);

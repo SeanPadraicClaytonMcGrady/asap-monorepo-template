@@ -7,7 +7,6 @@
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"dev": "tsc",
 		"usecase:add": "pnpm plop",
-		"push": "pnpm with-env drizzle-kit push",
 		"studio": "pnpm with-env drizzle-kit studio",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false",
 		"with-env": "dotenv -e ../../.env --",

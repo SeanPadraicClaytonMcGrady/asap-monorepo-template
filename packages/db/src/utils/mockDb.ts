@@ -54,7 +54,7 @@ export class MockDb {
 	/**
 	 * Gets the mock database instance
 	 */
-	async getDb(): Promise<NodePgDatabase<typeof schema>> {
+	getDb(): NodePgDatabase<typeof schema> {
 		if (!this.mockDb) {
 			throw new Error("Database not started. Call on() first.");
 		}
@@ -64,7 +64,7 @@ export class MockDb {
 	/**
 	 * Gets the database schema
 	 */
-	async getSchema(): Promise<typeof schema> {
+	getSchema(): typeof schema {
 		return this.schema;
 	}
 
@@ -89,3 +89,5 @@ export class MockDb {
 // Export a singleton instance
 export const mockDb = new MockDb();
 export type mockDbType = typeof mockDb;
+
+export { desc, eq } from "drizzle-orm";
