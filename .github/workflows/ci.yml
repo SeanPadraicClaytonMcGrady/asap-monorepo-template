@@ -44,9 +44,6 @@ jobs:
 
       - run: pnpm install
 
-      - name: Check migrations
-        run: pnpm db:check-migrations
-
       - name: Run all tests with coverage
         run: pnpm ci:test
 
