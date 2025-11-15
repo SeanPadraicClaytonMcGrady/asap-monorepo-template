@@ -1,8 +1,10 @@
+import { resolve } from "node:path";
 import {
 	PostgreSqlContainer,
 	type StartedPostgreSqlContainer,
 } from "@testcontainers/postgresql";
 import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { Pool } from "pg";
 import * as schema from "../schema";
 
@@ -32,6 +34,10 @@ export class MockDb {
 		const connectionString = this.container.getConnectionUri();
 		this.pool = new Pool({ connectionString });
 		this.mockDb = drizzle(this.pool, { schema });
+
+		await migrate(this.mockDb, {
+			migrationsFolder: resolve(__dirname, "../../drizzle"),
+		});
 	}
 
 	/**
@@ -48,14 +54,17 @@ export class MockDb {
 	/**
 	 * Gets the mock database instance
 	 */
-	getDb(): NodePgDatabase<typeof schema> {
+	async getDb(): Promise<NodePgDatabase<typeof schema>> {
 		if (!this.mockDb) {
 			throw new Error("Database not started. Call on() first.");
 		}
 		return this.mockDb;
 	}
 
-	getSchema() {
+	/**
+	 * Gets the database schema
+	 */
+	async getSchema(): Promise<typeof schema> {
 		return this.schema;
 	}
 

@@ -27,7 +27,7 @@ export class AddUserUseCase {
 		const validData = this.validate();
 
 		// Insert the user into the database
-		const result = await this.dbClient.insert(this.schema.user).values({
+		return await this.dbClient.insert(this.schema.user).values({
 			id: validData.id,
 			name: validData.name,
 			email: validData.email,
@@ -36,7 +36,5 @@ export class AddUserUseCase {
 			createdAt: validData.createdAt,
 			updatedAt: validData.updatedAt,
 		});
-
-		return result;
 	}
 }

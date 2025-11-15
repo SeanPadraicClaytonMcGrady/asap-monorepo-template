@@ -14,13 +14,16 @@
 		"./schema": {
 			"types": "./dist/schema.d.ts",
 			"default": "./src/schema.ts"
-		}
+		},
+		"./mockDb": "./src/utils/mockDb.ts"
 	},
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"dev": "tsc",
+		"check-migrations": "drizzle-kit generate --check",
+		"generate": "pnpm with-env drizzle-kit generate",
 		"push": "pnpm with-env drizzle-kit push",
 		"studio": "pnpm with-env drizzle-kit studio",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false",

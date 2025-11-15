@@ -40,6 +40,16 @@
 		"usecase:add": {
 			"cache": false,
 			"interactive": true
+		},
+		"test": {
+			"dependsOn": ["transit"]
+		},
+		"transit": {
+			"dependsOn": ["^transit"]
+		},
+		"generate": {
+			"cache": false,
+			"interactive": true
 		}
 	},
 	"globalEnv": [
