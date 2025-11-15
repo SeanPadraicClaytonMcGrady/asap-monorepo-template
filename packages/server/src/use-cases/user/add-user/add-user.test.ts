@@ -23,11 +23,8 @@ describe("AddUserUseCase", () => {
 			createdAt: new Date(),
 			updatedAt: new Date(),
 		};
-		// TODO: Add validation tests
-		const useCase = new AddUserUseCase(
-			validInput, // Provide valid input for your tests
-			db,
-		);
+
+		const useCase = new AddUserUseCase(validInput, db.getDb(), db.getSchema());
 
 		expect(() => useCase.validate()).to.not.throw();
 	});
@@ -42,11 +39,8 @@ describe("AddUserUseCase", () => {
 			createdAt: new Date(),
 			updatedAt: new Date(),
 		};
-		// TODO: Add validation tests
-		const useCase = new AddUserUseCase(
-			validInput, // Provide valid input for your tests
-			db,
-		);
+
+		const useCase = new AddUserUseCase(validInput, db.getDb(), db.getSchema());
 
 		const result = useCase.execute();
 		// TODO: Add assertions based on expected output

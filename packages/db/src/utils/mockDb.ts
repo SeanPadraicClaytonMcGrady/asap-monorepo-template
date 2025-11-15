@@ -10,6 +10,7 @@ export class MockDb {
 	private container: StartedPostgreSqlContainer | null = null;
 	private pool: Pool | null = null;
 	private mockDb: NodePgDatabase<typeof schema> | null = null;
+	private schema = schema;
 
 	/**
 	 * Starts a new PostgreSQL container
@@ -52,6 +53,10 @@ export class MockDb {
 			throw new Error("Database not started. Call on() first.");
 		}
 		return this.mockDb;
+	}
+
+	getSchema() {
+		return this.schema;
 	}
 
 	/**

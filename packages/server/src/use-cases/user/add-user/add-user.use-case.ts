@@ -1,4 +1,4 @@
-import { mockDb, type mockDbType } from "@asap/db";
+import type { dbType, schemaType } from "@asap/db";
 import type z from "zod";
 import { AddUserInputSchema, AddUserOutputSchema } from "./add-user.schema";
 
@@ -7,8 +7,17 @@ import { AddUserInputSchema, AddUserOutputSchema } from "./add-user.schema";
 export class AddUserUseCase {
 	constructor(
 		private input: z.infer<typeof AddUserInputSchema>,
-		private dbClient = mockDb,
+		private dbClient: dbType,
+		private schema: schemaType,
 	) {}
+	/**
+	 *
+	 * Name: AddUser Use Case
+	 * Description: Adds a new user to the database
+	 * Purpose: To create and store user information securely (also to serve as a basic demonstration of Drizzle)
+	 * Location of use: None for now.
+	 *
+	 */
 
 	validate() {
 		return AddUserInputSchema.parse(this.input);
@@ -18,7 +27,7 @@ export class AddUserUseCase {
 		const validData = this.validate();
 
 		// Insert the user into the database
-		const result = await this.dbClient.getDb().insert(this).values({
+		const result = await this.dbClient.insert(this.schema.user).values({
 			id: validData.id,
 			name: validData.name,
 			email: validData.email,
@@ -28,7 +37,6 @@ export class AddUserUseCase {
 			updatedAt: validData.updatedAt,
 		});
 
-		// Return the first (and only) result
-		return result[0];
+		return result;
 	}
 }

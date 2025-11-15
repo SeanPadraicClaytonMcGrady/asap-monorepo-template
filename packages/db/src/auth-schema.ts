@@ -1,4 +1,5 @@
 import * as t from "drizzle-orm/pg-core";
+import { timeStamps } from "./utils/helpers";
 
 export const user = t.pgTable("user", {
 	id: t.text("id").primaryKey(),
@@ -6,23 +7,14 @@ export const user = t.pgTable("user", {
 	email: t.text("email").notNull().unique(),
 	emailVerified: t.boolean("email_verified").default(false).notNull(),
 	image: t.text("image"),
-	createdAt: t.timestamp("created_at").defaultNow().notNull(),
-	updatedAt: t
-		.timestamp("updated_at")
-		.defaultNow()
-		.$onUpdate(() => /* @__PURE__ */ new Date())
-		.notNull(),
+	...timeStamps,
 });
 
 export const session = t.pgTable("session", {
 	id: t.text("id").primaryKey(),
 	expiresAt: t.timestamp("expires_at").notNull(),
 	token: t.text("token").notNull().unique(),
-	createdAt: t.timestamp("created_at").defaultNow().notNull(),
-	updatedAt: t
-		.timestamp("updated_at")
-		.$onUpdate(() => /* @__PURE__ */ new Date())
-		.notNull(),
+	...timeStamps,
 	ipAddress: t.text("ip_address"),
 	userAgent: t.text("user_agent"),
 	userId: t
@@ -46,11 +38,7 @@ export const account = t.pgTable("account", {
 	refreshTokenExpiresAt: t.timestamp("refresh_token_expires_at"),
 	scope: t.text("scope"),
 	password: t.text("password"),
-	createdAt: t.timestamp("created_at").defaultNow().notNull(),
-	updatedAt: t
-		.timestamp("updated_at")
-		.$onUpdate(() => /* @__PURE__ */ new Date())
-		.notNull(),
+	...timeStamps,
 });
 
 export const verification = t.pgTable("verification", {
@@ -58,10 +46,5 @@ export const verification = t.pgTable("verification", {
 	identifier: t.text("identifier").notNull(),
 	value: t.text("value").notNull(),
 	expiresAt: t.timestamp("expires_at").notNull(),
-	createdAt: t.timestamp("created_at").defaultNow().notNull(),
-	updatedAt: t
-		.timestamp("updated_at")
-		.defaultNow()
-		.$onUpdate(() => /* @__PURE__ */ new Date())
-		.notNull(),
+	...timeStamps,
 });
