@@ -45,13 +45,14 @@ jobs:
       - run: pnpm install
 
       - name: Check migrations
-        if: github.event_name == 'pull_request'
         run: pnpm db:check-migrations
 
-      - name: Run affected tests
-        if: github.event_name == 'pull_request'
-        run: pnpm server:test:affected
+      - name: Run all tests with coverage
+        run: pnpm ci:test
 
-      - name: Run all tests
-        if: github.ref == 'refs/heads/main'
-        run: pnpm server:test
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports
+          path: packages/server/coverage/
+          retention-days: 30

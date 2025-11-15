@@ -10,7 +10,8 @@
 		"studio": "pnpm with-env drizzle-kit studio",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false",
 		"with-env": "dotenv -e ../../.env --",
-		"test": "pnpm vitest run"
+		"test": "pnpm vitest run",
+		"test:coverage": "pnpm vitest run --coverage"
 	},
 	"dependencies": {
 		"@asap/db": "workspace:*",
@@ -20,6 +21,7 @@
 	"devDependencies": {
 		"@asap/tsconfig": "workspace:*",
 		"@better-auth/cli": "catalog:",
+		"@vitest/coverage-v8": "4.0.9",
 		"jest": "^30.2.0",
 		"pg": "catalog:",
 		"plop": "^4.0.4",

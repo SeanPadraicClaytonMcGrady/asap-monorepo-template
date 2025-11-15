@@ -1,5 +1,8 @@
 {
 	"extends": "@asap/tsconfig/compiled-package.json",
+	"compilerOptions": {
+		"types": ["node"]
+	},
 	"include": ["src", "*.ts"],
 	"exclude": ["node_modules"]
 }
