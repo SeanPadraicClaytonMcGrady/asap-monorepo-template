@@ -14,28 +14,32 @@
 		"./schema": {
 			"types": "./dist/schema.d.ts",
 			"default": "./src/schema.ts"
-		}
+		},
+		"./mockDb": "./src/utils/mockDb.ts"
 	},
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
 		"clean": "git clean -xdf .cache .turbo dist node_modules",
 		"dev": "tsc",
+		"generate": "pnpm with-env drizzle-kit generate",
 		"push": "pnpm with-env drizzle-kit push",
 		"studio": "pnpm with-env drizzle-kit studio",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false",
 		"with-env": "dotenv -e ../../.env --"
 	},
 	"dependencies": {
-		"@vercel/postgres": "^0.10.0",
 		"drizzle-orm": "^0.44.7",
 		"drizzle-zod": "^0.8.3",
+		"pg": "8.16.3",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
+		"@types/node": "catalog:",
+		"@types/pg": "catalog:",
 		"@asap/tsconfig": "workspace:*",
-		"drizzle-kit": "^0.31.5",
-
+		"@testcontainers/postgresql": "catalog:",
+		"drizzle-kit": "catalog:",
 		"typescript": "catalog:"
 	}
 }

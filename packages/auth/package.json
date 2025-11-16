@@ -24,7 +24,6 @@
 	"devDependencies": {
 		"@asap/tsconfig": "workspace:*",
 		"@better-auth/cli": "catalog:",
-
 		"typescript": "catalog:"
 	}
 }

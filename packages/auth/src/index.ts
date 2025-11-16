@@ -1,4 +1,4 @@
-import { db } from "@asap/db/client";
+import { db } from "@asap/db";
 import { expo } from "@better-auth/expo";
 import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
 import { betterAuth } from "better-auth";
