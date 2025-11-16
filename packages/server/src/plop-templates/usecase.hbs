@@ -1,0 +1,28 @@
+import { dbType, schemaType } from "@asap/db";
+import type z from "zod";
+import { {{pascalCase name}}InputSchema, {{pascalCase name }}OutputSchema } from "./{{kebabCase name}}.schema";
+
+export class {{pascalCase name}}UseCase {
+	constructor(
+		private input: z.infer<typeof {{pascalCase name}}InputSchema>,
+		private dbClient: dbType,
+		private schema: schemaType
+	) {}
+
+	/**
+	 * Name: {{pascalCase name}} Use Case
+	 * Description: TODO: Add description (what it does)
+	 * Purpose: TODO: Add purpose (what it solves)
+	 * Location of use: TODO: Add location (where it is used)
+	 */
+
+	validate() {
+		return {{pascalCase name}}InputSchema.parse(this.input);
+	}
+
+	execute() {
+		const validData = this.validate();
+		// TODO: Implement the {{pascalCase name}} use case logic
+		return validData;
+	}
+}

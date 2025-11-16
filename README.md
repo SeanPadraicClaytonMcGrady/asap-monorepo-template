@@ -36,6 +36,8 @@ packages
   │   └─ Authentication using better-auth.
   ├─ db
   │   └─ Typesafe db calls using Drizzle
+  ├─ server
+  │   └─ Business logic & mock db testing
   └─ ui
       └─ Start of a UI package for the webapp using shadcn-ui
 tooling

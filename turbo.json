@@ -25,9 +25,6 @@
 		"clean": {
 			"cache": false
 		},
-		"//#clean": {
-			"cache": false
-		},
 		"push": {
 			"cache": false,
 			"interactive": true
@@ -39,10 +36,24 @@
 		"ui-add": {
 			"cache": false,
 			"interactive": true
+		},
+		"usecase:add": {
+			"cache": false,
+			"interactive": true
+		},
+		"test": {
+			"dependsOn": ["transit"]
+		},
+		"transit": {
+			"dependsOn": ["^transit"]
+		},
+		"generate": {
+			"cache": false,
+			"interactive": true
 		}
 	},
 	"globalEnv": [
-		"DATABASE_URL",
+		"POSTGRES_URL",
 		"AUTH_DISCORD_ID",
 		"AUTH_DISCORD_SECRET",
 		"AUTH_REDIRECT_PROXY_URL",

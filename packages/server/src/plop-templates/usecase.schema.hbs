@@ -1,0 +1,12 @@
+import { z } from "zod";
+
+export const {{pascalCase name}}InputSchema = z.object({
+	// Define your input schema fields here
+});
+
+export const {{pascalCase name}}OutputSchema = z.object({
+	// Define your output schema fields here
+});
+
+export type {{pascalCase name}}Input = z.infer<typeof {{pascalCase name}}InputSchema>;
+export type {{pascalCase name}}Output = z.infer<typeof {{pascalCase name}}OutputSchema>;
