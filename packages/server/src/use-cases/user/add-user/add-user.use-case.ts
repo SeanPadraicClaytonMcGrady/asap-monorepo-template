@@ -1,6 +1,6 @@
 import type { dbType, schemaType } from "@asap/db";
+import { AddUserInputSchema, AddUserOutputSchema } from "@asap/validators";
 import type z from "zod";
-import { AddUserInputSchema, AddUserOutputSchema } from "./add-user.schema";
 
 // TODO: Fix this example & use feedback to fix mockDb.ts and use-case templates
 

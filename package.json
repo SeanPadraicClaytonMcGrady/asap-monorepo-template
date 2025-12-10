@@ -27,12 +27,25 @@
 		"typecheck": "turbo run typecheck",
 		"ui-add": "turbo run ui-add",
 		"android": "expo run:android",
-		"ios": "expo run:ios"
+		"ios": "expo run:ios",
+		"prepare": "simple-git-hooks"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "pnpm lint-staged"
+	},
+	"lint-staged": {
+		"apps/nextjs/src/**/*.{ts,tsx}": [
+			"pnpm --filter @asap/nextjs extract",
+			"pnpm --filter @asap/nextjs compile",
+			"git add apps/nextjs/src/locales"
+		]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.5",
 		"@turbo/gen": "^2.5.8",
 		"dotenv-cli": "^10.0.0",
+		"lint-staged": "^16.2.7",
+		"simple-git-hooks": "^2.13.1",
 		"turbo": "^2.5.8",
 		"typescript": "catalog:"
 	}

@@ -1,6 +1,6 @@
 import { dbType, schemaType } from "@asap/db";
 import type z from "zod";
-import { {{pascalCase name}}InputSchema, {{pascalCase name }}OutputSchema } from "./{{kebabCase name}}.schema";
+import { {{pascalCase name}}InputSchema, {{pascalCase name }}OutputSchema } from "@asap/validators";
 
 export class {{pascalCase name}}UseCase {
 	constructor(
@@ -14,6 +14,7 @@ export class {{pascalCase name}}UseCase {
 	 * Description: TODO: Add description (what it does)
 	 * Purpose: TODO: Add purpose (what it solves)
 	 * Location of use: TODO: Add location (where it is used)
+	 * Author: TODO: Add author
 	 */
 
 	validate() {

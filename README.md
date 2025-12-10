@@ -56,6 +56,8 @@ tooling
 > **Note**
 > The [db](./packages/db) package is preconfigured to use Supabase and is **edge-bound** with the [Vercel Postgres](https://github.com/vercel/storage/tree/main/packages/postgres) driver. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts). If you want to switch to non-edge database driver, remove `export const runtime = "edge";` [from all pages and api routes](https://github.com/t3-oss/create-t3-turbo/issues/634#issuecomment-1730240214).
 
+> Webpack is the module bundler (instead of Turbopack) for the Next.js app because Serwist doesn't support Turbopack yet. It uses "--webpack" flag in the `pnpm dev` and `pnpm build` scripts in `apps/nextjs/package.json`, because Next.js 16 defaults to Turbopack.
+
 To get it running, follow the steps below:
 
 ### 1. Setup dependencies
@@ -308,4 +310,62 @@ git merge development
 
 ---
 
-Feel free to reach out to **Sean Padraic Clayton McGrady** (project author) for additional
+## Translation (LinguiJS)
+
+### 1. Architecture & Data Flow
+The system uses **LinguiJS**. The flow moves from **Source Code** ➡️ **Extraction** ➡️ **Translation** ➡️ **Compilation** ➡️ **Runtime**.
+
+1.  **Source (`.tsx`)**: You write text using the `<Trans>` macro.
+2.  **Extraction (`.po`)**: The `extract` script scans code, finds `<Trans>` tags, and updates messages.po files.
+3.  **Compilation (`.ts`)**: The `compile` script converts human-readable `.po` files into optimized TypeScript (`.ts`) files.
+4.  **Runtime**: The app imports these `.ts` files to display text.
+
+### 2. Key Concepts
+
+*   **`<Trans>` Macro**:
+    *   **How it works**: It marks text for translation. At build time, Babel/SWC replaces `<Trans>Hello</Trans>` with a function call looking up the ID "Hello".
+    *   **Variables**: `<Trans>Hello {name}</Trans>` becomes `Hello {name}` in the PO file. The variable is interpolated at runtime.
+    *   **Plurals**: Uses ICU MessageFormat. Example: `count, plural, one {# book} other {# books}`.
+*   **`.po` vs `.ts`**:
+    *   **messages.po**: The **Source of Truth** for translators. Human-readable. You edit this.
+    *   **messages.ts**: The **Artifact** for the code. Machine-readable, optimized, and typed. **Do not edit this.** We switched to `.ts` (from `.js`) to fix ESM/CJS import errors in Next.js.
+
+### 3. Developer Workflow
+
+#### How to Add/Edit Translations
+1.  **Write Code**: Add `<Trans>New Text</Trans>` in your React component.
+2.  **Extract**: Run `pnpm extract` (in nextjs). This adds "New Text" to messages.po.
+3.  **Translate**: Open messages.po. Find the new `msgid`. Write the translation in `msgstr`.
+    *   *Rule*: **NEVER** edit `msgid` manually. Only edit `msgstr`. If you change the text in the code, run extract again to update the `msgid`.
+4.  **Compile**: Run `pnpm compile`. This updates messages.ts.
+5.  **Clean**: pnpm extract --clean (removes obsolete translations from PO files (e.g., deleted Trans tag in the code))
+
+#### Automated Commands
+*   **`pnpm dev`**: Uses `concurrently` to run Next.js **AND** `lingui compile --watch`. If you edit a `.po` file and save, the app updates immediately.
+*   **Pre-commit Hook**: We installed `simple-git-hooks` and `lint-staged`. When you commit:
+    1.  It runs `extract` (captures new strings).
+    2.  It runs `compile` (ensures `.ts` files are valid).
+    3.  It adds these changes to your commit automatically.
+
+### 4. Configuration & Dependencies
+
+*   **`@lingui/macro`**: Allows the `<Trans>` syntax.
+*   **`@lingui/cli`**: Provides `extract` and `compile` commands.
+*   **lingui.config.ts**: Configures where locales live (`src/locales/{locale}`) and the output format (`po` input, `ts` output).
+*   **i18n.ts**: A helper that dynamically imports the *compiled* messages.ts file based on the user's locale cookie.
+
+### Summary of Relations
+`Component.tsx` (uses `<Trans>`)
+⬇️  
+*(pnpm extract)*
+messages.po (Human edits `msgstr` here)
+⬇️  
+*(pnpm compile)*
+`messages.ts` (Optimized JS object)
+⬇️  
+*(import)*
+`LinguiClientProvider` (Feeds data to App)
+
+---
+
+Feel free to reach out to **Sean Padraic Clayton McGrady** and **Alexis Michaud** (project authors) for additional questions.

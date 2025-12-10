@@ -1,0 +1,36 @@
+# providers = ["node"]
+
+# [phases.setup]
+# nixPkgs = ["pkgs.nodejs", "pkgs.pnpm"]
+
+# [phases.install]
+# cmds = [
+#   "pnpm install --no-frozen-lockfile",
+# ]
+
+# [phases.build]
+# cmds = [
+#   "turbo run build --filter=@asap/nextjs",
+# ]
+
+# [start]
+# cmd = "turbo run start --filter=@asap/nextjs"
+
+
+providers = ["node"]
+
+[phases.setup]
+nixPkgs = ["pkgs.nodejs", "pkgs.pnpm"]
+
+[phases.install]
+cmds = [
+"pnpm install --no-frozen-lockfile",
+]
+
+[phases.build]
+cmds = [
+"pnpm turbo build --filter=${DEPLOY_APP:-@asap/nextjs}",
+]
+
+[start]
+cmd = "pnpm turbo start --filter=${DEPLOY_APP:-@asap/nextjs}"

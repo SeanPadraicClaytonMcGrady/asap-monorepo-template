@@ -53,3 +53,11 @@ dist/
 
 # tanstack
 .tanstack
+
+# Drizzle ORM SQL migration files
+db/drizzle/
+
+# Serwist
+public/sw*
+sw.js
+public/swe-worker*
