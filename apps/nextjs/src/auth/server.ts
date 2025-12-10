@@ -7,8 +7,6 @@ import { cache } from "react";
 
 import { env } from "~/env.ts";
 
-const baseUrl = env.BASE_URL;
-
 export const auth = initAuth({
 	baseUrl: `${env.BASE_URL}`,
 	productionUrl: `${env.BASE_URL}`,

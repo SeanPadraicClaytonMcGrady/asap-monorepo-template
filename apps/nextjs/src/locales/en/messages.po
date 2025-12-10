@@ -152,6 +152,10 @@ msgstr "Country"
 msgid "Create Account"
 msgstr "Create Account"
 
+#: src/app/page.tsx:18
+msgid "Create the App <0>ASAP</0>"
+msgstr "Create the App <0>ASAP</0>"
+
 #: src/app/onboarding/page.tsx:499
 msgid "Current City"
 msgstr "Current City"

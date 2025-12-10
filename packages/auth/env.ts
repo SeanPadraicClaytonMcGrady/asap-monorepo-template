@@ -1,5 +1,5 @@
+// use global `process` (avoid importing `node:process` which breaks webpack)
 import { createEnv } from "@t3-oss/env-core";
-import process from "process";
 import { z } from "zod/v4";
 
 export function authEnv() {
@@ -7,6 +7,10 @@ export function authEnv() {
 		server: {
 			AUTH_DISCORD_ID: z.string().min(1),
 			AUTH_DISCORD_SECRET: z.string().min(1),
+			AUTH_GOOGLE_ID: z.string().min(1),
+			AUTH_GOOGLE_SECRET: z.string().min(1),
+			AUTH_APPLE_ID: z.string().min(1).optional(),
+			AUTH_APPLE_SECRET: z.string().min(1).optional(),
 			AUTH_SECRET:
 				process.env.NODE_ENV === "production"
 					? z.string().min(1)
