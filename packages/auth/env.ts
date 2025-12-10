@@ -1,5 +1,5 @@
-import process from "node:process";
 import { createEnv } from "@t3-oss/env-core";
+import process from "process";
 import { z } from "zod/v4";
 
 export function authEnv() {

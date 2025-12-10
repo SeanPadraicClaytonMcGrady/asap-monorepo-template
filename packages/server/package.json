@@ -18,7 +18,6 @@
 		"@asap/validators": "workspace:*",
 		"@google/genai": "^1.30.0",
 		"@t3-oss/env-core": "^0.13.8",
-		"circular-natal-horoscope-js": "catalog:",
 		"node-geocoder": "^4.4.1",
 		"universal-geocoder": "^0.14.2",
 		"zod": "catalog:",
