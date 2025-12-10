@@ -35,10 +35,10 @@
 		"zod": "catalog:"
 	},
 	"devDependencies": {
-		"@types/node": "catalog:",
-		"@types/pg": "catalog:",
 		"@asap/tsconfig": "workspace:*",
 		"@testcontainers/postgresql": "catalog:",
+		"@types/node": "catalog:",
+		"@types/pg": "catalog:",
 		"drizzle-kit": "catalog:",
 		"typescript": "catalog:"
 	}

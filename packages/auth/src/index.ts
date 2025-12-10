@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { db } from "@asap/db";
 import { expo } from "@better-auth/expo";
 import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
@@ -14,6 +15,10 @@ export function initAuth<
 
 	discordClientId: string;
 	discordClientSecret: string;
+	googleClientId: string;
+	googleClientSecret: string;
+	appleClientId?: string;
+	appleClientSecret?: string;
 	extraPlugins?: TExtraPlugins;
 }) {
 	const config = {
@@ -33,10 +38,29 @@ export function initAuth<
 			discord: {
 				clientId: options.discordClientId,
 				clientSecret: options.discordClientSecret,
-				redirectURI: `${options.productionUrl}/api/auth/callback/discord`,
+				// redirectURI: `${options.productionUrl}/api/auth/callback/discord`, // Will use default base URL
+			},
+			google: {
+				clientId: options.googleClientId,
+				clientSecret: options.googleClientSecret,
+				redirectURI: `${options.baseUrl}/api/auth/callback/google`,
+			},
+			...(options.appleClientId && options.appleClientSecret
+				? {
+						apple: {
+							clientId: options.appleClientId,
+							clientSecret: options.appleClientSecret,
+							// redirectURI: `${options.productionUrl}/api/auth/callback/apple`, // Will use default base URL
+						},
+					}
+				: {}),
+		},
+		advanced: {
+			database: {
+				generateId: () => randomUUID(),
 			},
 		},
-		trustedOrigins: ["expo://"],
+		trustedOrigins: ["expo://", options.baseUrl],
 		onAPIError: {
 			onError(error, ctx) {
 				console.error("BETTER AUTH API ERROR", error, ctx);

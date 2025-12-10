@@ -2,9 +2,12 @@
 	"$schema": "https://turborepo.com/schema.json",
 	"ui": "tui",
 	"tasks": {
-		"//#format-and-lint": {},
+		"//#format-and-lint": {
+			"inputs": ["!v2/mvp/**"]
+		},
 		"//#format-and-lint:fix": {
-			"cache": false
+			"cache": false,
+			"inputs": ["!v2/mvp/**"]
 		},
 		"topo": {
 			"dependsOn": ["^topo"]
@@ -58,6 +61,7 @@
 		}
 	},
 	"globalEnv": [
+		"BASE_URL",
 		"POSTGRES_URL",
 		"AUTH_DISCORD_ID",
 		"AUTH_DISCORD_SECRET",

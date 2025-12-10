@@ -1,0 +1,56 @@
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { {{pascalCase name}}Utility } from "./{{kebabCase name}}.utility";
+import { eq, MockDb } from "@asap/db/mockDb";
+
+describe("{{pascalCase name}}Utility", () => {
+	const mockDb = new MockDb();
+	let db: ReturnType<typeof mockDb.getDb>;
+	let schema: ReturnType<typeof mockDb.getSchema>;
+
+	beforeAll(async () => {
+		await mockDb.on();
+		await mockDb.seed();
+		db = mockDb.getDb();
+		schema = mockDb.getSchema();
+	}, 60000);
+
+	afterAll(async () => {
+		await mockDb.off();
+	}, 60000);
+
+	it("should validate input correctly", () => {
+		// TODO: Add validation tests
+
+		const validInput = {}
+		
+		const utility = new {{pascalCase name}}Utility(
+			validInput,
+			db,
+			schema
+		);
+
+		const utility = new {{pascalCase name}}Utility(
+			validInput,
+			db,
+			schema
+		);
+
+		expect(() => utility.validate()).to.not.throw();
+	});
+
+	it("should execute utility successfully", () => {
+		// TODO: Add execution tests
+
+		const validInput = {}
+		
+		const utility = new {{pascalCase name}}Utility(
+			validInput,
+			db,
+			schema
+		);
+
+		const result = utility.execute();
+		// TODO: Add assertions based on expected output
+		expect(result).toBeDefined();
+	});
+});

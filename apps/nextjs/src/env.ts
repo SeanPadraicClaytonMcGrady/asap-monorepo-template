@@ -1,7 +1,7 @@
-import process from "node:process";
 import { authEnv } from "@asap/auth/env";
 import { createEnv } from "@t3-oss/env-nextjs";
 import { vercel } from "@t3-oss/env-nextjs/presets-zod";
+import process from "process";
 import { z } from "zod/v4";
 
 export const env = createEnv({
@@ -10,6 +10,7 @@ export const env = createEnv({
 		NODE_ENV: z
 			.enum(["development", "production", "test"])
 			.default("development"),
+		BASE_URL: z.string(),
 	},
 	/**
 	 * Specify your server-side environment variables schema here.
@@ -31,6 +32,7 @@ export const env = createEnv({
 	 */
 	experimental__runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
+		BASE_URL: process.env.BASE_URL,
 
 		// NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 	},
