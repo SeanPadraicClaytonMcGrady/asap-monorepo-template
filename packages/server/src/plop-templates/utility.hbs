@@ -1,0 +1,29 @@
+import { dbType, schemaType } from "@asap/db";
+import type z from "zod";
+import { {{pascalCase name}}InputSchema, {{pascalCase name }}OutputSchema } from "@asap/validators";
+
+export class {{pascalCase name}}Utility {
+	constructor(
+		private input: z.infer<typeof {{pascalCase name}}InputSchema>,
+		private dbClient: dbType,
+		private schema: schemaType
+	) {}
+
+	/**
+	 * Name: {{pascalCase name}} Utility
+	 * Description: TODO: Add description (what it does)
+	 * Purpose: TODO: Add purpose (what it solves)
+	 * Location of use: TODO: Add location (where it is used)
+	 * Author: TODO: Add author
+	 */
+
+	validate() {
+		return {{pascalCase name}}InputSchema.parse(this.input);
+	}
+
+	execute() {
+		const validData = this.validate();
+		// TODO: Implement the {{pascalCase name}} utility logic
+		return validData;
+	}
+}

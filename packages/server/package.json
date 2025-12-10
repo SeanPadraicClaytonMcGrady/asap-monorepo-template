@@ -10,23 +10,35 @@
 		"studio": "pnpm with-env drizzle-kit studio",
 		"typecheck": "tsc --noEmit --emitDeclarationOnly false",
 		"with-env": "dotenv -e ../../.env --",
-		"test": "pnpm vitest run",
+		"test": "pnpm with-env vitest run",
 		"test:coverage": "pnpm vitest run --coverage"
 	},
 	"dependencies": {
 		"@asap/db": "workspace:*",
+		"@asap/validators": "workspace:*",
+		"@google/genai": "^1.30.0",
 		"@t3-oss/env-core": "^0.13.8",
+		"date-fns": "4.1.0",
+		"drizzle-orm": "catalog:",
+		"node-geocoder": "^4.4.1",
+		"universal-geocoder": "^0.14.2",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@asap/tsconfig": "workspace:*",
 		"@better-auth/cli": "catalog:",
+		"@types/node-geocoder": "^4.2.6",
 		"@vitest/coverage-v8": "4.0.9",
 		"jest": "^30.2.0",
 		"pg": "catalog:",
 		"plop": "^4.0.4",
 		"typescript": "catalog:",
 		"vitest": "^4.0.9"
+	},
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		}
 	},
 	"type": "module"
 }

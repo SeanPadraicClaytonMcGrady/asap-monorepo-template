@@ -1,6 +1,5 @@
 "use client";
 
-import process from "node:process";
 import type { AppRouter } from "@asap/api";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -10,6 +9,7 @@ import {
 	loggerLink,
 } from "@trpc/client";
 import { createTRPCContext } from "@trpc/tanstack-react-query";
+import process from "process";
 import { useState } from "react";
 import SuperJSON from "superjson";
 import { env } from "~/env.ts";

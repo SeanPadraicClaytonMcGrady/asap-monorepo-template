@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap");
+@import "@asap/tailwind-config/theme";
+
+body {
+	background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+	color: white;
+	overflow-x: hidden;
+	font-family: "Outfit", sans-serif;
+}
+
+.glass-panel {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	border-radius: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cosmic-gradient {
+	background: linear-gradient(135deg, #302b63 0%, #24243e 50%, #0f0c29 100%);
+}
+
+.text-glow {
+	text-shadow: 0 0 20px rgba(255, 0, 204, 0.5);
+}
+
+.animate-float {
+	animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+	animation: pulse-glow 3s infinite;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+}
+
+@keyframes pulse-glow {
+	0%,
+	100% {
+		opacity: 1;
+		box-shadow: 0 0 20px #ff00cc;
+	}
+	50% {
+		opacity: 0.7;
+		box-shadow: 0 0 10px #333399;
+	}
+}
+
+@theme {
+	--font-family-sans: "Outfit", sans-serif;
+
+	--color-cosmic-dark: #0f0c29;
+	--color-cosmic-purple: #302b63;
+	--color-cosmic-teal: #24243e;
+	--color-cosmic-accent: #ff00cc;
+	--color-cosmic-secondary: #333399;
+}
+
+.cursor-sparkle {
+	position: fixed;
+	pointer-events: none;
+	z-index: 9999;
+	border-radius: 50%;
+	animation: sparkle-float 1s ease-out forwards;
+}
+
+@keyframes sparkle-float {
+	0% {
+		opacity: 1;
+		transform: translate(0, 0) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(var(--tx), var(--ty)) scale(0);
+	}
+}

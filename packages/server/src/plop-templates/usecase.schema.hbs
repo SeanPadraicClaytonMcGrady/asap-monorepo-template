@@ -10,3 +10,6 @@ export const {{pascalCase name}}OutputSchema = z.object({
 
 export type {{pascalCase name}}Input = z.infer<typeof {{pascalCase name}}InputSchema>;
 export type {{pascalCase name}}Output = z.infer<typeof {{pascalCase name}}OutputSchema>;
+
+// IMPORTANT: Remember to add this schema to the validators package index.ts:
+// export * from './usecases/{{kebabCase category}}/{{kebabCase name}}/{{kebabCase name}}.schema';
