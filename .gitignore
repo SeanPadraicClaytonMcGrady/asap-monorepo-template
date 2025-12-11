@@ -61,3 +61,6 @@ db/drizzle/
 public/sw*
 sw.js
 public/swe-worker*
+
+# Lingui compiled files
+messages.ts
