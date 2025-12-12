@@ -14,13 +14,13 @@ import { getLocale, getMessages } from "~/lib/i18n";
 export const metadata: Metadata = {
 	metadataBase: new URL(
 		env.NODE_ENV === "production"
-			? (process.env.BASE_URL as string)
+			? (process.env.NEXT_PUBLIC_BASE_URL as string)
 			: "http://localhost:3000",
 	),
 	title: "Template",
 	description: "Describe your app here",
 	icons: {
-		icon: "/whoroscope-icon-192x.png",
+		icon: "/template-icon-192x.png",
 	},
 	openGraph: {
 		title: "Template",
