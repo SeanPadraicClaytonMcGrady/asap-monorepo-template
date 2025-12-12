@@ -8,8 +8,8 @@ import { cache } from "react";
 import { env } from "~/env.ts";
 
 export const auth = initAuth({
-	baseUrl: `${env.BASE_URL}`,
-	productionUrl: `${env.BASE_URL}`,
+	baseUrl: `${env.NEXT_PUBLIC_BASE_URL}`,
+	productionUrl: `${env.NEXT_PUBLIC_BASE_URL}`,
 	secret: env.AUTH_SECRET,
 	discordClientId: env.AUTH_DISCORD_ID,
 	discordClientSecret: env.AUTH_DISCORD_SECRET,

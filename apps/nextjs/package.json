@@ -10,7 +10,7 @@
 		"start": "pnpm with-env next start",
 		"typecheck": "tsc --noEmit",
 		"extract": "lingui extract",
-		"compile": "lingui compile",
+		"compile": "lingui compile --typescript",
 		"with-env": "dotenv -e ../../.env --"
 	},
 	"dependencies": {
