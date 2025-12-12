@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	title: "Template",
 	description: "Describe your app here",
 	icons: {
-		icon: "/whoroscope-icon-192x.png",
+		icon: "/template-icon-192x.png",
 	},
 	openGraph: {
 		title: "Template",
