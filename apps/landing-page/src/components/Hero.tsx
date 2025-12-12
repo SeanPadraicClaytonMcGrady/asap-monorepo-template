@@ -5,7 +5,7 @@ type HeroProps = {};
 
 const Hero: React.FC<HeroProps> = () => {
 	const goToApp = () => {
-		window.location.href = process.env.BASE_URL as string;
+		window.location.href = process.env.NEXT_PUBLIC_BASE_URL as string;
 	};
 	return (
 		<div className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden">
