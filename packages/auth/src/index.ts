@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { db } from "@asap/db";
+import { db } from "@asap/db/client";
 import { expo } from "@better-auth/expo";
 import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
 import { betterAuth } from "better-auth";

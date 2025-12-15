@@ -8,7 +8,7 @@
  */
 
 import type { Auth } from "@asap/auth";
-import { db } from "@asap/db";
+import { db } from "@asap/db/client";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError, z } from "zod/v4";
