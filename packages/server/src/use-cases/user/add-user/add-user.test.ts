@@ -1,8 +1,9 @@
-import { eq, mockDb } from "@asap/db/mockDb";
+import { eq, MockDb } from "@asap/db";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { AddUserUseCase } from "./add-user.use-case";
 
 describe("AddUserUseCase", () => {
+	const mockDb = new MockDb();
 	let db: ReturnType<typeof mockDb.getDb>;
 	let schema: ReturnType<typeof mockDb.getSchema>;
 	beforeEach(async () => {

@@ -85,9 +85,3 @@ export class MockDb {
 		this.mockDb = null;
 	}
 }
-
-// Export a singleton instance
-export const mockDb = new MockDb();
-export type mockDbType = typeof mockDb;
-
-export { desc, eq } from "drizzle-orm";
