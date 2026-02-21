@@ -34,6 +34,10 @@ export function initAuth<
 			expo(),
 			...(options.extraPlugins ?? []),
 		],
+		emailAndPassword: {
+			enabled: true,
+			requireEmailVerification: false, // Change this after adding an email servicer.
+		},
 		socialProviders: {
 			discord: {
 				clientId: options.discordClientId,
