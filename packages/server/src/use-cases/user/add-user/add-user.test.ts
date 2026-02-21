@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { eq, MockDb } from "@asap/db";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { AddUserUseCase } from "./add-user.use-case";
@@ -17,8 +18,9 @@ describe("AddUserUseCase", () => {
 	}, 60000);
 
 	it("should validate input correctly", async () => {
+		const testUUID = randomUUID();
 		const validInput = {
-			id: "123",
+			id: testUUID,
 			name: "John Doe",
 			email: "john.doe@example.com",
 			emailVerified: true,
@@ -34,8 +36,9 @@ describe("AddUserUseCase", () => {
 	});
 
 	it("should execute use case successfully", async () => {
+		const userId = randomUUID();
 		const validInput = {
-			id: "123",
+			id: userId,
 			name: "John Doe",
 			email: "john.doe@example.com",
 			emailVerified: true,
@@ -50,9 +53,9 @@ describe("AddUserUseCase", () => {
 		const newData = await db
 			.select()
 			.from(schema.user)
-			.where(eq(schema.user.id, "123"));
+			.where(eq(schema.user.id, userId));
 		// TODO: Add assertions based on expected output
 		// console.log(result)
-		expect(newData[0]!.id).toEqual("123");
+		expect(newData[0]!.id).toEqual(userId);
 	});
 }, 60000);

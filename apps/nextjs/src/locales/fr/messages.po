@@ -11,6 +11,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/app/page.tsx:18
+#: src/app/page.tsx:22
 msgid "Create the App"
 msgstr "Créer l'application"
