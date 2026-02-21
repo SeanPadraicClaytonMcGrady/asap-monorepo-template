@@ -54,7 +54,7 @@ tooling
 ## Quick Start
 
 > **Note**
-> The [db](./packages/db) package is preconfigured to use Supabase and is **edge-bound** with the [Vercel Postgres](https://github.com/vercel/storage/tree/main/packages/postgres) driver. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts). If you want to switch to non-edge database driver, remove `export const runtime = "edge";` [from all pages and api routes](https://github.com/t3-oss/create-t3-turbo/issues/634#issuecomment-1730240214).
+> The [db](./packages/db) package is preconfigured to use a postgresql database. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts).
 
 > Webpack is the module bundler (instead of Turbopack) for the Next.js app because Serwist doesn't support Turbopack yet. It uses "--webpack" flag in the `pnpm dev` and `pnpm build` scripts in `apps/nextjs/package.json`, because Next.js 16 defaults to Turbopack.
 
@@ -64,7 +64,7 @@ To get it running, follow the steps below:
 
 > [!NOTE]
 >
-> While the repo does contain both a Next.js and Tanstack Start version of a web app, you can pick which one you like to use and delete the other folder before starting the setup.
+> While the repo does contain both a Next.js and Expo app, and it's possible to remove them or add more app templates, note that Next currently provides the endpoints for Expo to utilize. You will need to set up endpoints for Expo if you remove Next.js
 
 ```bash
 # Install dependencies
@@ -160,12 +160,6 @@ The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as w
 
 ## FAQ
 
-### Does the starter include Solito?
-
-No. Solito will not be included in this repo. It is a great tool if you want to share code between your Next.js and Expo app. However, the main purpose of this repo is not the integration between Next.js and Expo — it's the code splitting of your T3 App into a monorepo. The Expo app is just a bonus example of how you can utilize the monorepo with multiple apps but can just as well be any app such as Vite, Electron, etc.
-
-Integrating Solito into this repo isn't hard, and there are a few [official templates](https://github.com/nandorojo/solito/tree/master/example-monorepos) by the creators of Solito that you can use as a reference.
-
 ### Does this pattern leak backend code to my client applications?
 
 No, it does not. The `api` package should only be a production dependency in the Next.js application where it's served. The Expo app, and all other apps you may add in the future, should only add the `api` package as a dev dependency. This lets you have full typesafety in your client applications, while keeping your backend code safe.
@@ -179,21 +173,15 @@ If you need to share runtime code between the client and server, such as input v
 #### Prerequisites
 
 > **Note**
-> Please note that the Next.js application with tRPC must be deployed in order for the Expo app to communicate with the server in a production environment.
+> Please note that the Next.js application with tRPC must be deployed in order for the Expo app to communicate with the server in a production environment. It provides the endpoints for tRPC.
 
-#### Deploy to Vercel
+#### Deployment
 
-Let's deploy the Next.js application to [Vercel](https://vercel.com). If you've never deployed a Turborepo app there, don't worry, the steps are quite straightforward. You can also read the [official Turborepo guide](https://vercel.com/docs/concepts/monorepos/turborepo) on deploying to Vercel.
-
-1. Create a new project on Vercel, select the `apps/nextjs` folder as the root directory. Vercel's zero-config system should handle all configurations for you.
-
-2. Add your `POSTGRES_URL` environment variable.
-
-3. Done! Your app should successfully deploy. Assign your domain and use that instead of `localhost` for the `url` in the Expo app so that your Expo app can communicate with your backend when you are not in development.
+This repo is configured to deploy via Coolify using nixpacks. There is a nixpacks.toml in the root. It is configured to run Next.js by default, but can be tweaked as needed.
 
 ### Auth Proxy
 
-The auth proxy comes as a better-auth plugin. This is required for the Next.js app to be able to authenticate users in preview deployments. The auth proxy is not used for OAuth request in production deployments. The easiest way to get it running is to deploy the Next.js app to vercel.
+The auth proxy comes as a better-auth plugin. This is required for the Next.js app to be able to authenticate users in preview deployments. The auth proxy is not used for OAuth request in production deployments.
 
 ### Expo
 
@@ -222,7 +210,8 @@ For development, we need a local database first.
 1. Run "docker compose up -d" in your terminal to turn on a database, viewable in Docker Desktop.
 (use "docker compose down -v" to turn it off)
 2. pnpm install
-3. pnpm dev
+3. pnpm build
+4. pnpm dev
 
 This will run the dev environment.
 
@@ -288,24 +277,24 @@ This merge request adds user verification via credentials and fingerprints to th
 
 ## Flow
 
-`yourBranch` + review → `development` + testing → `main`
+`yourBranch` + review → `dev` + testing → `main`
 
 ### Before Starting Work
 
 ```bash
-git checkout development
-git pull origin development
+git checkout dev
+git pull origin dev
 git checkout -b feature/your-feature-name
 ```
 
 ### While Working & Before Pushes to Dev
 
 ```bash
-# Regularly sync with development
-git checkout development
-git pull origin development
+# Regularly sync with dev
+git checkout dev
+git pull origin dev
 git checkout feature/your-feature-name
-git merge development
+git merge dev
 ```
 
 ---
