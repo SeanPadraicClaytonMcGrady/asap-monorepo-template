@@ -139,6 +139,7 @@ const result = await authClient.signUp.email({
 
 - The following is the correct syntax to use Tanstack React Query & tRPC together.
 - For mutations, it's possible to avoid try catch blocks by using onError, onSuccess, and other methods. Centralize all handling this way.
+- For queries, use the same pattern but leave the queryOptions() without parameters.
 
 	const api = useTRPC();
 	const submitToAI = useMutation(
@@ -187,4 +188,3 @@ export const storageRouter = {
 			return useCase.execute();
 		}),
 } satisfies TRPCRouterRecord;
-
